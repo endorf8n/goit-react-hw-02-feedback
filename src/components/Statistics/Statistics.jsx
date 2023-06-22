@@ -1,17 +1,33 @@
+import PropTypes from 'prop-types';
+import {
+  PositiveFeedback,
+  StatsList,
+  StatsListItem,
+  Total,
+} from './Statistics.styled';
+
 export const Statistics = ({ total, positivePercentage, data }) => {
   return (
-    <div>
-      <ul>
+    <>
+      <StatsList>
         {Object.entries(data).map(([key, value]) => {
           return (
-            <li key={crypto.randomUUID()}>
+            <StatsListItem key={crypto.randomUUID()}>
               {key}: {value}
-            </li>
+            </StatsListItem>
           );
         })}
-      </ul>
-      <p>Total: {total}</p>
-      <p>Positive Feedbacks: {positivePercentage}%</p>
-    </div>
+      </StatsList>
+      <Total>Total: {total}</Total>
+      <PositiveFeedback>
+        Positive Feedbacks: {positivePercentage}%
+      </PositiveFeedback>
+    </>
   );
+};
+
+Statistics.propTypes = {
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
 };
